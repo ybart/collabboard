@@ -1,0 +1,11 @@
+project_alpha:
+  name: "Project Alpha"
+  preview_image: "whiteboard-previews/sample1.png"
+
+project_beta:
+  name: "Project Beta"
+  preview_image: "whiteboard-previews/sample2.png"
+
+project_gamma:
+  name: "Project Gamma"
+  preview_image: "whiteboard-previews/sample3.png"
