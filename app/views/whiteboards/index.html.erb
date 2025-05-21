@@ -1,0 +1,21 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-bold text-gray-900">My Whiteboards</h1>
+    <%= link_to "New Whiteboard", "#", class: "px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700" %>
+  </div>
+
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <% @whiteboards.each do |whiteboard| %>
+      <div class="bg-white rounded-lg shadow overflow-hidden">
+        <%= image_tag whiteboard.preview_image, alt: "Whiteboard preview", class: "w-full h-48 object-cover" %>
+        <div class="p-4">
+          <h3 class="text-lg font-medium text-gray-900"><%= whiteboard.name %></h3>
+          <div class="mt-4 flex space-x-3">
+            <%= link_to "Open", whiteboard_path(whiteboard), class: "flex-1 text-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700" %>
+            <%= link_to "Share", "#", class: "flex-1 text-center px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
