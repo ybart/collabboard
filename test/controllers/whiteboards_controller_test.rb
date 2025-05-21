@@ -26,4 +26,16 @@ class WhiteboardsControllerTest < ActionDispatch::IntegrationTest
       assert_select "img[src*='whiteboard-previews/sample3']"
     end
   end
+
+  test "should show whiteboard with tools and participants" do
+    whiteboard = whiteboards(:project_alpha)
+    get whiteboard_url(whiteboard)
+
+    assert_response :success
+    assert_select ".flex-1" do  # Whiteboard workspace area
+      assert_select "[data-tool='marker']"  # Verify tools exist
+      assert_select "[data-tool='post-it']"
+    end
+    assert_select "h3", "Participants"  # Verify participants section
+  end
 end
