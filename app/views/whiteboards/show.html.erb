@@ -1,0 +1,36 @@
+<div class="h-[calc(100vh-7rem)] w-screen flex flex-col">
+  <!-- Main Content Area -->
+  <div class="flex flex-1 overflow-hidden">
+    <!-- Whiteboard Work Zone (Left) -->
+    <div class="flex-1 flex flex-col bg-white p-4">
+      <!-- Work Zone (Takes remaining space) -->
+      <div class="flex-1 bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg mb-4"></div>
+
+      <!-- Tools Section (Bottom) -->
+      <div class="flex gap-3 p-2">
+        <button class="bg-blue-50 border-2 border-blue-500 rounded-lg px-3 py-2 text-blue-700 hover:bg-blue-500 hover:text-white transition-colors duration-200" data-tool="post-it">📝 Post-it</button>
+        <button class="bg-blue-50 border-2 border-blue-500 rounded-lg px-3 py-2 text-blue-700 hover:bg-blue-500 hover:text-white transition-colors duration-200" data-tool="marker">🖍️ Marker</button>
+        <button class="bg-blue-50 border-2 border-blue-500 rounded-lg px-3 py-2 text-blue-700 hover:bg-blue-500 hover:text-white transition-colors duration-200" data-tool="sticker">🏷️ Sticker</button>
+        <button class="bg-blue-50 border-2 border-blue-500 rounded-lg px-3 py-2 text-blue-700 hover:bg-blue-500 hover:text-white transition-colors duration-200" data-tool="finger">👉 Finger</button>
+        <button class="bg-blue-50 border-2 border-blue-500 rounded-lg px-3 py-2 text-blue-700 hover:bg-blue-500 hover:text-white transition-colors duration-200" data-tool="paperclip">📎 Paperclip</button>
+      </div>
+    </div>
+
+    <!-- Participants Section (Right Sidebar) -->
+    <div class="w-64 bg-white border-2 border-blue-500 rounded-r-xl p-4 overflow-y-auto mb-4 mr-4 mt-4 flex flex-col">
+      <h3 class="text-lg font-semibold mb-2">Participants</h3>
+      <div class="space-y-3 flex-1">
+        <!-- Example avatars (replace with dynamic data) -->
+        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mx-auto">👤</div>
+        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mx-auto">👤</div>
+        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mx-auto">👤</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .tool-button.active {
+    background-color: #4F46E5;
+  }
+</style>
