@@ -1,0 +1,42 @@
+<div class="relative bg-gradient-to-r from-indigo-600 to-purple-600 overflow-hidden py-16 sm:py-24">
+  <!-- Animated background pattern -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiKDI1NSAyNTUgMjU1IC8gMC4xKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==')] animate-pattern-move"></div>
+  </div>
+
+  <div class="max-w-2xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative">
+    <!-- Floating circles -->
+    <div class="absolute -top-8 -left-8 w-32 h-32 bg-indigo-400 rounded-full mix-blend-overlay opacity-20 animate-float"></div>
+    <div class="absolute -bottom-8 -right-8 w-40 h-40 bg-purple-400 rounded-full mix-blend-overlay opacity-20 animate-float animation-delay-2000"></div>
+
+    <!-- Content -->
+    <h2 class="text-3xl font-extrabold text-white sm:text-4xl transform transition-all duration-500 hover:scale-105">
+      <span class="block">Ready to transform your workflow?</span>
+    </h2>
+    <p class="mt-4 text-lg leading-6 text-indigo-100">
+      Join thousands of teams who use CollabBoard daily.
+    </p>
+    
+    <!-- Animated button -->
+    <div class="mt-8 transform hover:scale-105 transition-transform duration-300">
+      <%= link_to "Get Started Free", new_user_registration_path, 
+            class: "inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-xl text-indigo-600 bg-white hover:bg-indigo-50 transition-all duration-300 hover:shadow-2xl" %>
+    </div>
+    
+    <!-- Trust indicators -->
+    <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-6 text-indigo-200 text-sm">
+      <div class="flex items-center">
+        <svg class="h-5 w-5 text-indigo-300 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        No credit card required
+      </div>
+      <div class="flex items-center">
+        <svg class="h-5 w-5 text-indigo-300 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+        </svg>
+        Enterprise-grade security
+      </div>
+    </div>
+  </div>
+</div>
