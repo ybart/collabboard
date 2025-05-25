@@ -36,6 +36,25 @@
           </div>
           <div class="flex items-center space-x-4">
             <%= link_to "Whiteboards", whiteboards_path, class: "text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" %>
+            <% if user_signed_in? %>
+              <div class="relative">
+                <details class="group">
+                <summary class="flex items-center cursor-pointer list-none p-2 group">
+                  <!-- Visible Gradient Circle with White Icon -->
+                  <div class="relative w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                </summary>
+                 <ul class="absolute right-0 mt-1 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+                    <li class="px-4 py-2 text-sm text-gray-700 border-b border-gray-100"><%= current_user.email %></li>
+                    <li><%= link_to "Account Settings", edit_user_registration_path, class: "block px-4 py-2 text-sm hover:bg-gray-100" %></li>
+                    <li><%= link_to "Logout", destroy_user_session_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm hover:bg-gray-100" %></li>
+                  </ul>
+                </details>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
