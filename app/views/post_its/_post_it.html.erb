@@ -1,0 +1,9 @@
+<div id="<%= dom_id(post_it) %>"
+     class="post-it absolute bg-yellow-200 p-3 shadow-lg rounded w-40 h-40 cursor-move"
+     style="left: <%= post_it.x %>px; top: <%= post_it.y %>px;"
+     data-controller="post-it"
+     data-post-it-id-value="<%= post_it.id %>"
+     data-post-it-dragging-class="post-it-dragging"
+     data-action="dragstart->post-it#dragStart">
+  <%= post_it.content %>
+</div>
