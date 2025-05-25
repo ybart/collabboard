@@ -1,0 +1,85 @@
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-8 border-b border-gray-200 pb-4">
+    <h3 class="text-2xl font-semibold leading-6 text-gray-900">Passkeys</h3>
+  </div>
+
+  <div class="bg-white shadow-sm ring-1 ring-gray-900/5 rounded-lg">
+    <table class="min-w-full divide-y divide-gray-300">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Label</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Sign Count</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Last Used At</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Public Key</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">External ID</th>
+          <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"><span class="sr-only">Actions</span></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 bg-white">
+        <% current_user.passkeys.each do |passkey| %>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+              <%= passkey.label %>
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+              <%= passkey.sign_count %>
+            </td>
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+              <%= passkey.last_used_at %>
+            </td>
+            <td class="px-3 py-4 text-sm text-gray-500">
+              <pre class="text-xs bg-gray-100 p-2 rounded overflow-x-auto max-w-xs"><%= passkey.public_key %></pre>
+            </td>
+            <td class="px-3 py-4 text-sm text-gray-500">
+              <pre class="text-xs bg-gray-100 p-2 rounded overflow-x-auto max-w-xs"><%= passkey.external_id %></pre>
+            </td>
+            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+              <% if current_user.passkeys.count > 1 %>
+                <%= form_with(
+                  model: [:users, passkey],
+                  method: :delete,
+                  class: "delete-passkey",
+                  data: {
+                    "reauthentication_challenge_url": new_destroy_challenge_users_passkey_url(passkey),
+                    "reauthentication_token_url": user_reauthentication_url,
+                    "reauthentication_token_field_name": "passkey[reauthentication_token]",
+                  }
+                ) do |f| %>
+                  <%= f.hidden_field :reauthentication_token %>
+                  <button 
+                    type="submit" 
+                    class="text-red-600 hover:text-red-900 inline-flex items-center gap-1"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    Delete
+                  </button>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-8">
+    <%= render "users/passkeys/new_form", resource_name: :user %>
+  </div>
+</div>
+
+
+<script type="module">
+  import {getReauthenticationToken} from 'passkey_reauthentication_handler'
+
+  let submitDeletePasskeyFormEvent = async function(event){
+    event.preventDefault()
+    event.stopImmediatePropagation()
+    let form = event.currentTarget
+    await getReauthenticationToken(form)
+    form.submit()
+  }
+
+  document.querySelectorAll('.delete-passkey').forEach(form => form.addEventListener('submit', submitDeletePasskeyFormEvent))
+</script>
