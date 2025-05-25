@@ -4,7 +4,7 @@
 
 ### Authentication Flow
 
-- [ ] Add passkey authentification on new accounts creation (requestinng name for passkey)
+- [x] Add passkey authentification on new accounts creation (requestinng name for passkey)
 - [ ] Password fallack when WebAuthn fails or is unavailable
   - [ ] Hide Passkey label field by default and show it only when we got webauthn credential
   - [ ] Show password field by default and hide it after successful webauthn credential generation

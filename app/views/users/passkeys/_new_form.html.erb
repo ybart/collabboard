@@ -1,0 +1,90 @@
+<div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
+  <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Add New Passkey</h3>
+<%= form_with(
+      scope: :passkey,
+      url: users_passkeys_url,
+      method: :post,
+      id: :"add-passkey-form",
+      data: {
+        "reauthentication_challenge_url": new_user_reauthentication_challenge_url,
+        "reauthentication_token_url": user_reauthentication_url,
+        "reauthentication_token_field_name": "passkey[reauthentication_token]",
+
+        "challenge_url": new_create_challenge_users_passkeys_url,
+        "credential_field_name": "passkey[credential]"
+      }
+) do |f| %>
+    <div class="space-y-2">
+      <fieldset class="flex items-center gap-4">
+        <button 
+          id="unlock-button" 
+          type="button"
+          class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+          </svg>
+          Unlock
+        </button>
+        <%= f.text_field :reauthentication_token, 
+              readonly: true,
+              class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+      </fieldset>
+
+      <fieldset id='new-passkey-fields' disabled class="space-y-4">
+        <div>
+          <%= f.label :label, "Device Name", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_field :label, 
+                autofocus: "off", 
+                required: true,
+                class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" %>
+        </div>
+
+        <%= f.hidden_field :credential %>
+
+        <button 
+          type="submit"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+          </svg>
+          Add Passkey
+        </button>
+      </fieldset>
+    </div>
+  <% end %>
+</div>
+
+
+<script type="module">
+  import {getReauthenticationToken} from 'passkey_reauthentication_handler'
+  import {submitFormEvent} from 'registration_form'
+
+  let unlockFormEvent = async function(event){
+    let unlockButton = event.currentTarget
+    let form = unlockButton.closest('form')
+    await getReauthenticationToken(form)
+    form.querySelector('#new-passkey-fields').removeAttribute("disabled")
+  }
+
+  // let unlockFormEvent = async function(event){
+  //   const publicKey = {
+  //     challenge: new Uint8Array([79, 252, 83, 72, 214, 7, 89, 26]),
+  //     rp: { id: "collabboard.tpk.dev", name: "ACME Corporation" },
+  //     user: {
+  //       id: new Uint8Array([79, 252, 83, 72, 214, 7, 89, 26]),
+  //       name: "jamiedoe",
+  //       displayName: "Jamie Doe",
+  //     },
+  //     pubKeyCredParams: [{ type: "public-key", alg: -7 }],
+  //   };
+
+  //   const publicKeyCredential = await navigator.credentials.create({ publicKey });
+  // }
+
+  document.querySelector('#unlock-button').addEventListener('click', unlockFormEvent)
+  document.querySelector('#add-passkey-form').addEventListener('submit', submitFormEvent)
+
+  
+</script>
