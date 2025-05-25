@@ -1,0 +1,38 @@
+<div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col h-full">
+  <div>
+    <h3 class="text-xl font-medium text-gray-900">Free</h3>
+    <div class="mt-4">
+      <span class="text-4xl font-bold">$0</span>
+      <span class="text-gray-500">/month</span>
+    </div>
+    <p class="mt-2 text-sm text-gray-500">Perfect for individuals</p>
+  </div>
+
+  <div class="mt-6 flex-grow">
+    <ul class="space-y-3">
+      <li class="flex items-start">
+        <svg class="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="ml-2 text-gray-600">3 editable boards</span>
+      </li>
+      <li class="flex items-start">
+        <svg class="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="ml-2 text-gray-600">2 collaborators</span>
+      </li>
+      <li class="flex items-start">
+        <svg class="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="ml-2 text-gray-600">Basic templates</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mt-8">
+    <%= link_to "Get started", new_user_registration_path, 
+          class: "block w-full text-center px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50" %>
+  </div>
+</div>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   }
   # Pages
   root to: "pages#home"
+  get "/pricing", to: "pages#pricing", as: :pricing
 
   # Whiteboards
   resources :whiteboards, only: [ :index, :show ] do
