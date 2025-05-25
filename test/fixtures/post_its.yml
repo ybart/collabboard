@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  x: 1
+  'y': 1
+  color: MyString
+  author: MyString
+  whiteboard: one
+
+two:
+  content: MyText
+  x: 1
+  'y': 1
+  color: MyString
+  author: MyString
+  whiteboard: two

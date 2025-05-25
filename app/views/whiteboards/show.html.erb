@@ -1,14 +1,22 @@
-<div class="h-[calc(100vh-7rem)] w-screen flex flex-col">
+<div class="h-[calc(100vh-7rem)] w-screen flex flex-col"
+     data-controller="tools" data-tools-whiteboard-id-value="<%= @whiteboard.id %>">
   <!-- Main Content Area -->
   <div class="flex flex-1 overflow-hidden">
     <!-- Whiteboard Work Zone (Left) -->
     <div class="flex-1 flex flex-col bg-white p-4">
       <!-- Work Zone (Takes remaining space) -->
-      <div class="flex-1 bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg mb-4"></div>
+      <%= turbo_stream_from @whiteboard %>
+
+      <div id="<%= dom_id(@whiteboard) %>"
+           class="whiteboard-area flex-1 bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg mb-4"
+           data-tools-target="dropZone"
+           data-action="dragover->tools#allowDrop drop->tools#handleDrop dragleave->tools#handleDragLeave">
+        <%= render @whiteboard.post_its %>
+      </div>
 
       <!-- Tools Section (Bottom) -->
-      <div class="flex gap-3 p-2">
-        <button class="bg-blue-50 border-2 border-blue-500 rounded-lg px-3 py-2 text-blue-700 hover:bg-blue-500 hover:text-white transition-colors duration-200" data-tool="post-it">📝 Post-it</button>
+      <div class="tools-js hidden flex gap-3 p-2">
+        <button class="bg-blue-50 border-2 border-blue-500 rounded-lg px-3 py-2 text-blue-700 hover:bg-blue-500 hover:text-white transition-colors duration-200" data-tool="post-it tool" draggable="true" data-action="dragstart->tools#handleDragStart">📝 Post-it</button>
         <button class="bg-blue-50 border-2 border-blue-500 rounded-lg px-3 py-2 text-blue-700 hover:bg-blue-500 hover:text-white transition-colors duration-200" data-tool="marker">🖍️ Marker</button>
         <button class="bg-blue-50 border-2 border-blue-500 rounded-lg px-3 py-2 text-blue-700 hover:bg-blue-500 hover:text-white transition-colors duration-200" data-tool="sticker">🏷️ Sticker</button>
         <button class="bg-blue-50 border-2 border-blue-500 rounded-lg px-3 py-2 text-blue-700 hover:bg-blue-500 hover:text-white transition-colors duration-200" data-tool="finger">👉 Finger</button>
@@ -27,7 +35,19 @@
       </div>
     </div>
   </div>
+
+  <div class="hidden fixed z-50" data-tools-target="proxyPostIt">
+    <div class="bg-yellow-200 p-3 shadow-lg rounded w-40 h-40 rounded">
+      <div data-tools-target="proxyContent">New note</div>
+    </div>
+  </div>
+
 </div>
+
+<div class="flex gap-4">
+  <%= render 'post_it_form' %>
+</div>
+
 
 <style>
   .tool-button.active {
