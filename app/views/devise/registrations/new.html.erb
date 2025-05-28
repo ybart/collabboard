@@ -14,7 +14,7 @@
 
     <div class="mb-4">
       <%= f.label :passkey_label, class: "passkey-fields hidden block text-sm font-medium text-gray-700 mb-1" %>
-      <%= f.text_field :passkey_label, autofocus: "off", required: true,
+      <%= f.text_field :passkey_label, autofocus: "off", data: { "required": "true" },
             class: "passkey-fields hidden w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
     </div>
 
@@ -51,6 +51,7 @@
   if (window.PublicKeyCredential) {
     Array.from(document.querySelectorAll('.passkey-fields')).forEach(field => field.classList.remove('hidden'));
     Array.from(document.querySelectorAll('.password-fields')).forEach(field => field.classList.add('hidden'));
+    Array.from(document.querySelectorAll('[data-js-required]')).forEach(field => field.required = true);
   }
 
   document.querySelector('form').addEventListener('submit', submitFormEvent)

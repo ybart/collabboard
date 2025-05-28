@@ -66,3 +66,5 @@ end
 
 gem "devise", "~> 4.9"
 gem "devise-passkeys", "~> 0.2.0"
+
+gem "mocha", "~> 2.7", group: :test

@@ -5,7 +5,7 @@ module RelyingParty
     WebAuthn::RelyingParty.new(
       # This value needs to match `window.location.origin` evaluated by
       # the User Agent during registration and authentication ceremonies.
-      origin: "https://collabboard.tpk.dev",
+      allowed_origins: [ "https://collabboard.tpk.dev" ],
 
       # Relying Party name for display purposes
       name: "CollabBoard"
