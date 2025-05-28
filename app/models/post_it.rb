@@ -1,9 +1,12 @@
 class PostIt < ApplicationRecord
   include ActionView::RecordIdentifier
 
+  belongs_to :author, class_name: "User"
   belongs_to :whiteboard
 
+  validates :content, presence: true
   validates :x, :y, numericality: true
+  validates :color, presence: true
 
   after_create_commit :broadcast_create
   after_update :broadcast_update
