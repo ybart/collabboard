@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+alice:
+  email: "alice@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  reset_password_token: <%= SecureRandom.hex(10) %>
+  reset_password_sent_at: <%= 1.day.ago %>
+  remember_created_at: <%= 1.hour.ago %>
+  webauthn_id: <%= SecureRandom.base64(20) %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %> 
