@@ -1,17 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  label: MyString
-  external_id: MyString
-  public_key: MyString
-  sign_count: 1
-  last_used_at: 2025-05-24 18:37:45
-
-two:
-  user: two
-  label: MyString
-  external_id: MyString
-  public_key: MyString
-  sign_count: 1
-  last_used_at: 2025-05-24 18:37:45
+alice_work_laptop:
+  user: alice
+  label: "Work Laptop"
+  public_key: "mock_public_key"
+  external_id: <%= Base64.strict_encode64("test_passkey_123") %>
+  sign_count: 0
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %> 

@@ -1,7 +1,14 @@
 require "test_helper"
 
 class WhiteboardsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+  include ActionView::Helpers::AssetUrlHelper
+  include Propshaft::Helper
+
   setup do
+    @user = users(:alice)
+    sign_in @user
+
     @fixtures = [
       whiteboards(:project_alpha),
       whiteboards(:project_beta),
@@ -21,9 +28,7 @@ class WhiteboardsControllerTest < ActionDispatch::IntegrationTest
 
     @fixtures.each do |wb|
       assert_select "h3", text: wb.name
-      assert_select "img[src*='whiteboard-previews/sample1']"
-      assert_select "img[src*='whiteboard-previews/sample2']"
-      assert_select "img[src*='whiteboard-previews/sample3']"
+      assert_select "img[src*='#{image_path wb.preview_image}']"
     end
   end
 
@@ -34,7 +39,7 @@ class WhiteboardsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select ".flex-1" do  # Whiteboard workspace area
       assert_select "[data-tool='marker']"  # Verify tools exist
-      assert_select "[data-tool='post-it']"
+      assert_select "[data-tool='post-it tool']"
     end
     assert_select "h3", "Participants"  # Verify participants section
   end
