@@ -1,17 +1,43 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+alice_reminder:
+  content: "Team standup at 10am"
+  x: 100
+  y: 200
+  color: "yellow"
+  author: alice  # Reference to the alice fixture
+  whiteboard: main
+  created_at: <%= 1.day.ago %>
+  updated_at: <%= 2.hours.ago %>
 
-one:
-  content: MyText
-  x: 1
-  'y': 1
-  color: MyString
-  author: MyString
-  whiteboard: one
+alice_todo:
+  content: "Review PR #42"
+  x: 300
+  y: 150
+  color: "blue"
+  author: alice  # Reference to the alice fixture
+  whiteboard: main
+  created_at: <%= 3.hours.ago %>
+  updated_at: <%= 30.minutes.ago %>
 
-two:
-  content: MyText
-  x: 1
-  'y': 1
-  color: MyString
-  author: MyString
-  whiteboard: two
+team_note:
+  content: "Sprint planning Friday"
+  x: 200
+  y: 300
+  color: "green"
+  author: alice  # Reference to the alice fixture
+  whiteboard: main
+  created_at: <%= 2.days.ago %>
+  updated_at: <%= 1.day.ago %>
+
+urgent:
+  content: "This is an urgent note that needs attention immediately. Please review as soon as possible. This is an urgent note that needs attention immediately. Please review as soon as possible. This is an urgent note that needs attention immediately. Please review as soon as possible. This is an urgent note that needs attention immediately. Please review as soon as possible. This is an urgent note that needs attention immediately. Please review as soon as possible."
+  author: alice
+  whiteboard: main
+  created_at: <%= 2.hours.ago %>
+  updated_at: <%= 1.hour.ago %>
+
+regular:
+  content: "Regular meeting notes"
+  author: alice
+  whiteboard: main
+  created_at: <%= 1.day.ago %>
+  updated_at: <%= 1.day.ago %>

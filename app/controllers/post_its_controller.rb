@@ -3,7 +3,7 @@ class PostItsController < ApplicationController
   before_action :set_post_it, only: [ :update, :destroy ]
 
   def create
-    @post_it = @whiteboard.post_its.new(post_it_params)
+    @post_it = @whiteboard.post_its.new(post_it_params.merge(author: current_user))
     if @post_it.save
       render json: @post_it, status: :created
     else
@@ -35,6 +35,6 @@ class PostItsController < ApplicationController
   end
 
   def post_it_params
-    params.require(:post_it).permit(:content, :x, :y, :color, :author)
+    params.require(:post_it).permit(:content, :x, :y, :color)
   end
 end
