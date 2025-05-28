@@ -114,9 +114,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-passkeys (0.2.0)
+    devise-passkeys (0.3.0)
       devise (>= 4.7.1)
-      warden-webauthn (>= 0.2.1)
+      warden-webauthn (>= 0.3.0)
     docile (1.4.1)
     dotenv (3.1.8)
     drb (2.2.3)
@@ -426,7 +426,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
-  devise-passkeys (~> 0.2.0)
+  devise-passkeys (~> 0.3.0)
   importmap-rails
   jbuilder
   kamal
