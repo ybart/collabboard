@@ -5,8 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :passkeys, dependent: :destroy
-
-  after_initialize :set_default_password, if: :new_record?
+  has_many :authored_post_its, class_name: "PostIt", foreign_key: "author_id", dependent: :destroy
 
   def self.passkeys_class
     Passkey
@@ -20,10 +19,9 @@ class User < ApplicationRecord
     # Optional: Perform any additional actions after successful passkey authentication
   end
 
-  def set_default_password
-    return unless self.password.blank?
-
-    self.password_confirmation = self.password = Devise.friendly_token[0, 20]
+  def password_required?
+    return false if webauthn_id.present?
+    super
   end
 end
 

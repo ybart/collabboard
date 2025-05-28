@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_24_163745) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_28_203305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -37,6 +37,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_24_163745) do
     t.bigint "whiteboard_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_post_its_on_author_id"
     t.index ["whiteboard_id"], name: "index_post_its_on_whiteboard_id"
   end
 
@@ -46,7 +48,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_24_163745) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "webauthn_id", null: false
+    t.string "webauthn_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -62,5 +64,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_24_163745) do
   end
 
   add_foreign_key "passkeys", "users"
+  add_foreign_key "post_its", "users", column: "author_id"
   add_foreign_key "post_its", "whiteboards"
 end
